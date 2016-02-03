@@ -106,11 +106,11 @@ public class WeblogicPlugin extends AbstractUIPlugin {
         log.log(status);
     }
 
-    public WeblogicLauncher getWeblogicStart() {
+    public WeblogicLauncher startWeblogic() {
         return new StartWeblogic();
     }
 
-    public WeblogicLauncher getWeblogicShutdown() {
+    public WeblogicLauncher stopWeblogic() {
         return new StopWeblogic();
     }
 

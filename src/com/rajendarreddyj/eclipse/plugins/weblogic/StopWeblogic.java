@@ -16,7 +16,7 @@ public class StopWeblogic extends WeblogicLauncher {
     
     protected String[] getClasspath()
     {
-      return WeblogicPlugin.getDefault().getWeblogicStart().getClasspath();
+      return WeblogicPlugin.getDefault().startWeblogic().getClasspath();
     }
     
     protected String[] getPrgArgs()
