@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.startWeblogicCommand"
+            class="com.rajendarreddyj.eclipse.plugins.weblogic.handlers.StartActionHandler">
+      </handler>
+       <handler
+            commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.stopWeblogicCommand"
+            class="com.rajendarreddyj.eclipse.plugins.weblogic.handlers.StopActionHandler">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="com.rajendarreddyj.eclipse.plugins.weblogic.toolbars.WeblogicToolbar">
+            <command
+                  commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.startWeblogicCommand"
+                  icon="icons/start.gif"
+                  tooltip="Start Weblogic Server"
+                  id="com.rajendarreddyj.eclipse.plugins.weblogic.toolbars.startWeblogicCommand">
+            </command>
+            <command
+                  commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.stopWeblogicCommand"
+                  icon="icons/stop.gif"
+                  tooltip="Stop Weblogic Server"
+                  id="com.rajendarreddyj.eclipse.plugins.weblogic.toolbars.stopWeblogicCommand">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Weblogic"
+            class="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.WeblogicPreferencePage"
+            id="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.WeblogicPreferencePage"/>
+            
+      <page
+            name="Classpath"
+            class="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.ClasspathPreferencePage"
+            id="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.ClasspathPreferencePage"
+            category="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.WeblogicPreferencePage"/>
+      <page
+            name="JVM Options"
+            class="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.JVMOptionsPreferencePage"
+            id="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.ClasspathPreferencePage"
+			category="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.WeblogicPreferencePage"/>
+      <page
+            name="Project"
+            class="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.ProjectPreferencePage"
+            id="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.ClasspathPreferencePage"
+			category="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.WeblogicPreferencePage"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+
+</plugin>
