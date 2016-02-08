@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.rajendarreddyj.eclipse.plugins.weblogic.feature"
+      label="Eclipse Weblogic Plugin"
+      version="1.0.0"
+      provider-name="RAJENDARREDDYJ"
+      plugin="com.rajendarreddyj.eclipse.plugins.weblogic.plugin">
+
+   <description url="https://raw.githubusercontent.com/rajendarreddyj/eclipse-weblogic-plugin/master/README.md">
+      Simple Weblogic Plugin to Start/Stop Weblogic Server.
+   </description>
+
+   <copyright url="https://raw.githubusercontent.com/rajendarreddyj/eclipse-weblogic-plugin/master/LICENSE">
+      Copyright (C) 2016  rajendarreddyj
+   </copyright>
+
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      The MIT License (MIT)
+
+Copyright (c) 2016 Rajendarreddy Jagapathi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+   </license>
+
+   <url>
+      <update url="https://raw.githubusercontent.com/rajendarreddyj/eclipse-weblogic-plugin/master/com.rajendarreddyj.eclipse.plugins.weblogic.updatesite"/>
+   </url>
+
+   <plugin
+         id="com.rajendarreddyj.eclipse.plugins.weblogic.plugin"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         unpack="false"/>
+
+</feature>

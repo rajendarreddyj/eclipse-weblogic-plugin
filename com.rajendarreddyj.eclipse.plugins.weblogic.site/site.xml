@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Eclipse Weblogic Plugin" url="https://github.com/rajendar/eclipse-weblogic-plugin">
+      Eclipse Weblogic plugin for Simple Eclipse Weblogic plugin
+   </description>
+   <feature url="features/com.rajendarreddyj.eclipse.plugins.weblogic.feature_1.0.0.jar" id="com.rajendarreddyj.eclipse.plugins.weblogic.feature" version="1.0.0">
+      <category name="Eclipse Weblogic Plugin"/>
+   </feature>
+   <category-def name="com.rajendarreddyj.eclipse.plugins.weblogic" label="Eclipse Weblogic Plugin">
+      <description>
+         A Simple Weblogic Plugin to Start/Stop Weblogic Server.
+      </description>
+   </category-def>
+</site>

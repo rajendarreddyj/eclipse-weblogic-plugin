@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <category-def name="com.rajendarreddyj.eclipse.plugins.weblogic" label="Eclipse Weblogic Plugin">
-      <description>
-         A Simple Weblogic Plugin to Start/Stop Weblogic Server.
-      </description>
-   </category-def>
-</site>
