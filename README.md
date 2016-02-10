@@ -4,7 +4,7 @@ Simple eclipse weblogic plugin rewritten for new Eclipse Versions(4.x or greater
 ##How to build eclipse-weblogic-plugin ?
 ###With Eclipse:
 - Launch _Eclipse_,
-- Import the  _"Existing Projects into Workspace"_ by selecting the parent project folder,
+- Import _"Existing Projects into Workspace"_ by selecting the parent project folder,
 - Export _"Deployable features"_,
 - Copy _"site.xml"_ to the destination directory.
 
