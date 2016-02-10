@@ -14,7 +14,7 @@
       Copyright (C) 2016  rajendarreddyj
    </copyright>
 
-   <license url="http://www.eclipse.org/legal/epl-v10.html">
+   <license url="https://raw.githubusercontent.com/rajendarreddyj/eclipse-weblogic-plugin/master/LICENSE">
       The MIT License (MIT)
 
 Copyright (c) 2016 Rajendarreddy Jagapathi
@@ -39,7 +39,7 @@ SOFTWARE.
    </license>
 
    <url>
-      <update url="https://raw.githubusercontent.com/rajendarreddyj/eclipse-weblogic-plugin/master/com.rajendarreddyj.eclipse.plugins.weblogic.updatesite"/>
+      <update url="https://github.com/rajendarreddyj/eclipse-weblogic-plugin/archives/eclipse-weblogic-plugin.1.0.0.zip"/>
    </url>
 
    <plugin

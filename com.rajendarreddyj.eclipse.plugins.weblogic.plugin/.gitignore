@@ -1,14 +1,5 @@
-# Eclipse Files #
-.classpath
-.project
-.settings/
-
 # Class Files #
 *.class
 
-# Package Files #
-*.jar
-*.war
-*.ear
 # bin directory #
 /bin/
