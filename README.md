@@ -1,5 +1,5 @@
 ## eclipse-weblogic-plugin
-Simple eclipse weblogic plugin rewritten for new Eclipse Versions(3.x or greater).
+Simple eclipse weblogic plugin rewritten for new Eclipse Versions(4.x or greater).
 
 ##How to build eclipse-weblogic-plugin ?
 ###With Eclipse:
