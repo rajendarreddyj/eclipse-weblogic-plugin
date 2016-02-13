@@ -15,7 +15,7 @@ start and stop specified weblogic instance and also used to debug code.
 1. Build or download & unzip _"eclipse-weblogic-plugin-site-x.y.z.zip"_,
 2. Launch _Eclipse_,
 3. In Eclipse, Click on _"Help > Install New Software..."_,
-3. Click on button _"Add..."_ to add an new repository,
+3. Click on button _"Add..."_ to add a new repository,
 4. Enter Name and select the local site directory as below and click OK.
     * Name    : Eclipse Weblogic Plugin Update Site
     * Location: Eclipse Site Directory (either extracted one or locally built site directory)
@@ -26,7 +26,7 @@ start and stop specified weblogic instance and also used to debug code.
 ##How to install Eclipse Weblogic Plugin from [update site](https://rajendarreddyj.github.io/eclipse-weblogic-plugin/update-site/)?
 1. Launch _Eclipse_,
 2. In Eclipse, Click on _"Help > Install New Software..."_,
-3. Click on button _"Add..."_ to add an new repository,
+3. Click on button _"Add..."_ to add a new repository,
 4. Enter Name and URL as below and click OK.
     * Name    : Eclipse Weblogic Plugin Update Site
     * Location: https://rajendarreddyj.github.io/eclipse-weblogic-plugin/update-site/
