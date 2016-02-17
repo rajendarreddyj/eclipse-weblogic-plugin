@@ -30,7 +30,8 @@ public class StopWeblogic extends WeblogicLauncher implements WeblogicPluginReso
 	 */
 	@Override
 	protected String getMainClass() {
-		return WEBLOGIC_MAIN_CLASS;
+		//TODO replace weblogic.Admin with better server stop code
+		return "weblogic.Admin";
 	}
 
 	/*
