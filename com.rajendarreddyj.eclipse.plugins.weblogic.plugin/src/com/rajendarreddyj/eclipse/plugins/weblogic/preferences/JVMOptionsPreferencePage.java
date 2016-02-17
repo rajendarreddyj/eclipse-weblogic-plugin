@@ -1,6 +1,5 @@
 package com.rajendarreddyj.eclipse.plugins.weblogic.preferences;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,56 +17,76 @@ import com.rajendarreddyj.eclipse.plugins.weblogic.WeblogicPluginResources;
 import com.rajendarreddyj.eclipse.plugins.weblogic.editors.JVMOptionEditor;
 import com.rajendarreddyj.eclipse.plugins.weblogic.editors.PathFieldEditor;
 
-public class JVMOptionsPreferencePage extends FieldEditorPreferencePage implements WeblogicPluginResources, IWorkbenchPreferencePage {
-    private String[][] jvmNamesAndValues;
+/**
+ * This class represents JVM Options preference page
+ * 
+ * @author rajendarreddyj
+ *
+ */
+public class JVMOptionsPreferencePage extends FieldEditorPreferencePage
+		implements WeblogicPluginResources, IWorkbenchPreferencePage {
+	private String[][] jvmNamesAndValues;
 
-    public JVMOptionsPreferencePage() {
-        super(GRID);
-        setPreferenceStore(WeblogicPlugin.getDefault().getPreferenceStore());
-        setDescription(WeblogicPluginResources.JVM_DESCRIPTION_LABEL);
-        initializeDefaults();
-    }
+	/**
+	 * 
+	 */
+	public JVMOptionsPreferencePage() {
+		super(GRID);
+		setPreferenceStore(WeblogicPlugin.getDefault().getPreferenceStore());
+		setDescription(JVM_DESCRIPTION_LABEL);
+		initializeDefaults();
+	}
 
-    private void initializeDefaults() {
-        IPreferenceStore store = getPreferenceStore();
-        store.setDefault("jreid", JavaRuntime.getDefaultVMInstall().getId());
-        String defaultOptions = "-Xms256m;-Xmx512m;-Dweblogic.ProductionModeEnabled=false;";
-        if (File.separator.equals("\\")) {
-            defaultOptions = defaultOptions
-                    + "-Dweblogic.security.SSL.trustedCAKeyStore=C:\\bea\\weblogic700\\server\\lib\\cacerts;-Djava.security.policy=C:\\bea\\weblogic700\\server\\lib\\weblogic.policy;";
-        } else {
-            defaultOptions = defaultOptions
-                    + "-Dweblogic.security.SSL.trustedCAKeyStore=/opt/bea/weblogic700/server/lib/cacerts;-Djava.security.policy=/opt/bea/weblogic700/server/lib/weblogic.policy;";
-        }
-        store.setDefault("jvmoptions", defaultOptions);
-    }
+	/**
+	 * This method will Initialize Default values(if any)
+	 */
+	private void initializeDefaults() {
+		final IPreferenceStore store = getPreferenceStore();
+		store.setDefault(PREF_JRE, JavaRuntime.getDefaultVMInstall().getId());
+		final String defaultOptions = DEFAULT_JVM_OPTIONS;
+		store.setDefault(PREF_JVM_OPTIONS, defaultOptions);
+	}
 
-    @Override
-    public void init(IWorkbench arg0) {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
+	 */
+	@Override
+	public void init(final IWorkbench arg0) {
+	}
 
-    private void setAllVMs() {
-        List<IVMInstall> allVMs = new ArrayList<>();
-        IVMInstallType[] vmTypes = JavaRuntime.getVMInstallTypes();
-        for (int i = 0; i < vmTypes.length; i++) {
-            IVMInstall[] vms = vmTypes[i].getVMInstalls();
-            for (int j = 0; j < vms.length; j++) {
-                allVMs.add(vms[j]);
-            }
-        }
-        this.jvmNamesAndValues = new String[allVMs.size()][2];
-        for (int i = 0; i < allVMs.size(); i++) {
-            this.jvmNamesAndValues[i][0] = ((IVMInstall) allVMs.get(i)).getName();
-            this.jvmNamesAndValues[i][1] = ((IVMInstall) allVMs.get(i)).getId();
-        }
-    }
+	/**
+	 * This method will fetch and set All Available JVMs in Dropdown
+	 */
+	private void setAllVMs() {
+		final List<IVMInstall> allVMs = new ArrayList<>();
+		final IVMInstallType[] vmTypes = JavaRuntime.getVMInstallTypes();
+		for (final IVMInstallType vmType : vmTypes) {
+			final IVMInstall[] vms = vmType.getVMInstalls();
+			for (final IVMInstall vm : vms) {
+				allVMs.add(vm);
+			}
+		}
+		jvmNamesAndValues = new String[allVMs.size()][2];
+		for (int i = 0; i < allVMs.size(); i++) {
+			jvmNamesAndValues[i][0] = allVMs.get(i).getName();
+			jvmNamesAndValues[i][1] = allVMs.get(i).getId();
+		}
+	}
 
-    public void createFieldEditors() {
-        setAllVMs();
-        ComboFieldEditor jvmChoice = new ComboFieldEditor("jreid", WeblogicPluginResources.JVM_JAVAVM_LABEL, this.jvmNamesAndValues, getFieldEditorParent());
-        addField(jvmChoice);
-        addField(new JVMOptionEditor("jvmoptions", WeblogicPluginResources.JVM_OPTIONS_LABEL, getFieldEditorParent()));
-        addField(new PathFieldEditor("libpath", WeblogicPluginResources.JVM_LIBRARYPATH_LABEL, getFieldEditorParent()));
-    }
+	/**
+	 * Creates the JVM Options Preferece page field editors.
+	 * 
+	 * @see org.eclipse.jface.preference.FieldEditorPreferencePage#createFieldEditors()
+	 */
+	@Override
+	public void createFieldEditors() {
+		setAllVMs();
+		addField(new ComboFieldEditor(PREF_JRE, JVM_JAVAVM_LABEL, jvmNamesAndValues, getFieldEditorParent()));
+		addField(new JVMOptionEditor(PREF_JVM_OPTIONS, JVM_OPTIONS_LABEL, getFieldEditorParent()));
+		addField(new PathFieldEditor(PREF_LIBPATH, JVM_LIBRARYPATH_LABEL, getFieldEditorParent()));
+	}
 
 }

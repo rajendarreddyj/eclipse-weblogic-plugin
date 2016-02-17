@@ -1,139 +1,261 @@
 package com.rajendarreddyj.eclipse.plugins.weblogic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectNature;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.Launch;
 import org.eclipse.debug.core.model.ISourceLocator;
+import org.eclipse.debug.core.sourcelookup.ISourceContainer;
+import org.eclipse.debug.core.sourcelookup.ISourceLookupDirector;
+import org.eclipse.debug.core.sourcelookup.ISourcePathComputer;
+import org.eclipse.debug.core.sourcelookup.containers.DefaultSourceContainer;
+import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.debug.ui.IDebugUIConstants;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.debug.ui.JavaUISourceLocator;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.internal.launching.JavaSourceLookupDirector;
 import org.eclipse.jdt.launching.IVMInstall;
 import org.eclipse.jdt.launching.IVMInstallType;
 import org.eclipse.jdt.launching.IVMRunner;
 import org.eclipse.jdt.launching.JavaRuntime;
 import org.eclipse.jdt.launching.VMRunnerConfiguration;
-import org.eclipse.jdt.launching.sourcelookup.JavaSourceLocator;
+import org.eclipse.jdt.launching.sourcelookup.containers.JavaProjectSourceContainer;
+import org.eclipse.jdt.launching.sourcelookup.containers.PackageFragmentRootSourceContainer;
 
+/**
+ * This Abstract class will be Used in Starting and Stoping of Weblogic Server
+ * 
+ * @author rajendarreddyj
+ *
+ */
+@SuppressWarnings({ "restriction" })
 public abstract class WeblogicLauncher implements WeblogicPluginResources {
-    String[] defaultBootClasspath = new String[0];
-    String[] defaultVMArgs = new String[0];
-    String[] defaultPrgArgs = new String[0];
+	String[] defaultBootClasspath = new String[0];
+	String[] defaultVMArgs = new String[0];
+	String[] defaultPrgArgs = new String[0];
 
-    public IVMInstall getVMInstall() {
-        IVMInstallType[] vmTypes = JavaRuntime.getVMInstallTypes();
-        for (int i = 0; i < vmTypes.length; i++) {
-            IVMInstall[] vms = vmTypes[i].getVMInstalls();
-            for (int j = 0; j < vms.length; j++) {
-                if (vms[j].getId().equals(WeblogicPlugin.getDefault().getJRE())) {
-                    return vms[j];
-                }
-            }
-        }
-        return JavaRuntime.getDefaultVMInstall();
-    }
+	/**
+	 * 
+	 * @return
+	 */
+	public IVMInstall getVMInstall() {
+		final IVMInstallType[] vmTypes = JavaRuntime.getVMInstallTypes();
+		for (final IVMInstallType vmType : vmTypes) {
+			final IVMInstall[] vms = vmType.getVMInstalls();
+			for (final IVMInstall vm : vms) {
+				if (vm.getId().equals(WeblogicPlugin.getDefault().getJRE())) {
+					return vm;
+				}
+			}
+		}
+		return JavaRuntime.getDefaultVMInstall();
+	}
 
-    public void runVM(String label, String classToLaunch, String[] classpath, String[] bootClasspath, String[] vmArgs, String[] prgArgs, String workDir,
-            ISourceLocator sourceLocator, boolean debug, boolean showInDebugger) throws CoreException {
-        IVMInstall vmInstall = getVMInstall();
-        String mode = "";
-        if ((debug) && (classToLaunch.equals("weblogic.Server"))) {
-            mode = "debug";
-        } else {
-            mode = "run";
-        }
-        IVMRunner vmRunner = vmInstall.getVMRunner(mode);
+	/**
+	 * @param label
+	 * @param classToLaunch
+	 * @param classpath
+	 * @param bootClasspath
+	 * @param vmArgs
+	 * @param prgArgs
+	 * @param workDir
+	 * @param sourceLocator
+	 * @param debug
+	 * @param showInDebugger
+	 * @throws CoreException
+	 */
+	public void runVM(final String label, final String classToLaunch, final String[] classpath,
+			final String[] bootClasspath, final String[] vmArgs, final String[] prgArgs, final String workDir,
+			final ISourceLocator sourceLocator, final boolean debug, final boolean showInDebugger)
+			throws CoreException {
+		final IVMInstall vmInstall = getVMInstall();
+		String mode = "";
+		if (debug && classToLaunch.equals(WEBLOGIC_MAIN_CLASS)) {
+			mode = "debug";
+		} else {
+			mode = "run";
+		}
+		final IVMRunner vmRunner = vmInstall.getVMRunner(mode);
 
-        ILaunchConfigurationType launchType = DebugPlugin.getDefault().getLaunchManager()
-                .getLaunchConfigurationType("org.eclipse.jdt.launching.localJavaApplication");
-        ILaunchConfigurationWorkingCopy config = launchType.newInstance(null, label);
-        config.setAttribute(IDebugUIConstants.ATTR_PRIVATE, true);
-        config.setAttribute(IDebugUIConstants.ATTR_TARGET_DEBUG_PERSPECTIVE, "perspective_default");
-        config.setAttribute(IDebugUIConstants.ATTR_TARGET_RUN_PERSPECTIVE, "perspective_default");
-        config.setAttribute(ILaunchConfiguration.ATTR_SOURCE_LOCATOR_ID, JavaUISourceLocator.ID_PROMPTING_JAVA_SOURCE_LOCATOR);
+		final ILaunchConfigurationType launchType = DebugPlugin.getDefault().getLaunchManager()
+				.getLaunchConfigurationType("org.eclipse.jdt.launching.localJavaApplication");
+		final ILaunchConfigurationWorkingCopy config = launchType.newInstance(null, label);
+		config.setAttribute(IDebugUIConstants.ATTR_PRIVATE, true);
+		config.setAttribute(ILaunchConfiguration.ATTR_SOURCE_LOCATOR_ID,
+				"org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector");
+		DebugUITools.setLaunchPerspective(launchType, mode, IDebugUIConstants.PERSPECTIVE_DEFAULT);
+		final Launch launch = new Launch(config, mode, sourceLocator);
 
-        Launch launch = new Launch(config, mode, sourceLocator);
+		config.doSave();
+		if (vmRunner != null) {
+			WeblogicPlugin.log("VM ARGS" + Arrays.toString(vmArgs));
+			WeblogicPlugin.log("classpath" + Arrays.toString(classpath));
+			final VMRunnerConfiguration vmConfig = new VMRunnerConfiguration(classToLaunch, classpath);
+			vmConfig.setVMArguments(vmArgs);
+			vmConfig.setProgramArguments(prgArgs);
+			if (workDir != null) {
+				vmConfig.setWorkingDirectory(workDir);
+			}
+			if (bootClasspath.length == 0) {
+				vmConfig.setBootClassPath(null);
+			} else {
+				vmConfig.setBootClassPath(bootClasspath);
+			}
+			vmRunner.run(vmConfig, launch, null);
+		}
+		if (showInDebugger) {
+			DebugPlugin.getDefault().getLaunchManager().addLaunch(launch);
+		}
+	}
 
-        config.doSave();
-        if (vmRunner != null) {
-            VMRunnerConfiguration vmConfig = new VMRunnerConfiguration(classToLaunch, classpath);
-            vmConfig.setVMArguments(vmArgs);
-            vmConfig.setProgramArguments(prgArgs);
-            if (workDir != null) {
-                vmConfig.setWorkingDirectory(workDir);
-            }
-            if (bootClasspath.length == 0) {
-                vmConfig.setBootClassPath(null);
-            } else {
-                vmConfig.setBootClassPath(bootClasspath);
-            }
-            vmRunner.run(vmConfig, launch, null);
-        }
-        if (showInDebugger) {
-            DebugPlugin.getDefault().getLaunchManager().addLaunch(launch);
-        }
-    }
+	/**
+	 * 
+	 * @return
+	 */
+	protected abstract String getLabel();
 
-    protected abstract String getLabel();
+	/**
+	 * @return
+	 */
+	protected abstract String getMainClass();
 
-    protected abstract String getMainClass();
+	/**
+	 * @return
+	 */
+	protected abstract String[] getClasspath();
 
-    protected abstract String[] getClasspath();
+	/**
+	 * @return
+	 */
+	protected String[] getBootClasspath() {
+		return defaultBootClasspath;
+	}
 
-    protected String[] getBootClasspath() {
-        return this.defaultBootClasspath;
-    }
+	/**
+	 * @return
+	 */
+	protected String[] getVMArgs() {
+		return defaultVMArgs;
+	}
 
-    protected String[] getVMArgs() {
-        return this.defaultVMArgs;
-    }
+	/**
+	 * @return
+	 */
+	protected String[] getPrgArgs() {
+		return defaultPrgArgs;
+	}
 
-    protected String[] getPrgArgs() {
-        return this.defaultPrgArgs;
-    }
+	/**
+	 * @return
+	 */
+	protected abstract String getWorkdir();
 
-    abstract String getWorkdir();
+	/**
+	 * @return
+	 * @throws CoreException
+	 */
+	protected ISourceLocator getSourceLocator() throws CoreException {
+		final IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		final IProject[] allProjects = root.getProjects();
+		final List<IProjectNature> tempList = new ArrayList<>(allProjects.length);
+		for (final IProject allProject : allProjects) {
+			if (allProject.isOpen() && allProject.hasNature(JavaCore.NATURE_ID)) {
+				tempList.add(allProject.getNature(JavaCore.NATURE_ID));
+			}
+		}
+		final ISourceLookupDirector sourceLocator = new JavaSourceLookupDirector();
 
-    protected ISourceLocator getSourceLocator() throws CoreException {
-        IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-        IProject[] allProjects = root.getProjects();
+		final ISourcePathComputer computer = DebugPlugin.getDefault().getLaunchManager()
+				.getSourcePathComputer("org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer");
+		sourceLocator.setSourcePathComputer(computer);
 
-        List<IProjectNature> tempList = new ArrayList<>(allProjects.length);
-        for (int i = 0; i < allProjects.length; i++) {
-            if ((allProjects[i].isOpen()) && (allProjects[i].hasNature("org.eclipse.jdt.core.javanature"))) {
-                tempList.add(allProjects[i].getNature("org.eclipse.jdt.core.javanature"));
-            }
-        }
-        ISourceLocator sourceLocator = null;
-        if (!tempList.isEmpty()) {
-            IJavaProject[] javaProjects = (IJavaProject[]) tempList.toArray(new IJavaProject[1]);
-            sourceLocator = new JavaSourceLocator(javaProjects, true);
-        }
-        return sourceLocator;
-    }
+		final List<ISourceContainer> sourceContainers = new ArrayList<>();
 
-    protected boolean isDebugMode() {
-        return true;
-    }
+		if (!tempList.isEmpty()) {
+			final IJavaProject[] javaProjects = tempList.toArray(new IJavaProject[1]);
 
-    protected boolean isShowInDebugger() {
-        return true;
-    }
+			// Eclipse stops looking for source if it finds a jar containing the
+			// source code
+			// despite this jar as no attached source (the user will have to use
+			// 'Attach source' button).
+			// So we have to enforce that sources in project are searched before
+			// jar files,
+			// To do so we add source containers in this orders :
+			// - First project source containers.
+			// - second packageFragmentRoot container (jar files in projects
+			// build path will be added to source path)
+			// - third DefaultSourceContainer (jar files added to classpath will
+			// be added to source path)
 
-    public void run() throws CoreException {
-        String[] tmp = getClasspath();
-        if ((tmp != null) && (tmp.length > 0)) {
-            runVM(getLabel(), getMainClass(), getClasspath(), getBootClasspath(), getVMArgs(), getPrgArgs(), getWorkdir(), getSourceLocator(), isDebugMode(),
-                    isShowInDebugger());
-        }
-    }
+			// First add all projects source containers
+			for (final IJavaProject project : javaProjects) {
+				sourceContainers.add(new JavaProjectSourceContainer(project));
+			}
+
+			// Adding packageFragmentRoot source containers, so classes in jar
+			// files associated to a project will be seen
+			final Set<IPath> external = new HashSet<>();
+
+			for (final IJavaProject project : javaProjects) {
+				final IPackageFragmentRoot[] iPackageFragmentRoots = project.getPackageFragmentRoots();
+				for (final IPackageFragmentRoot iPackageFragmentRoot : iPackageFragmentRoots) {
+					if (iPackageFragmentRoot.isExternal()) {
+						final IPath location = iPackageFragmentRoot.getPath();
+						if (external.contains(location)) {
+							continue;
+						}
+						external.add(location);
+					}
+					sourceContainers.add(new PackageFragmentRootSourceContainer(iPackageFragmentRoot));
+				}
+			}
+		}
+
+		// Last add DefaultSourceContainer, classes in jar files added to
+		// classpath will be visible
+		sourceContainers.add(new DefaultSourceContainer());
+
+		sourceLocator.setSourceContainers(sourceContainers.toArray(new ISourceContainer[sourceContainers.size()]));
+		sourceLocator.initializeParticipants();
+		return sourceLocator;
+	}
+
+	/**
+	 * @return
+	 */
+	protected boolean isDebugMode() {
+		return true;
+	}
+
+	/**
+	 * @return
+	 */
+	protected boolean isShowInDebugger() {
+		return true;
+	}
+
+	/**
+	 * @throws CoreException
+	 */
+	public void run() throws CoreException {
+		final String[] tmp = getClasspath();
+		if (tmp != null && tmp.length > 0) {
+			runVM(getLabel(), getMainClass(), getClasspath(), getBootClasspath(), getVMArgs(), getPrgArgs(),
+					getWorkdir(), getSourceLocator(), isDebugMode(), isShowInDebugger());
+		}
+	}
 }

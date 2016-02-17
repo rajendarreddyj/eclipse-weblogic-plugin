@@ -8,26 +8,50 @@ import com.rajendarreddyj.eclipse.plugins.weblogic.WeblogicPlugin;
 import com.rajendarreddyj.eclipse.plugins.weblogic.WeblogicPluginResources;
 import com.rajendarreddyj.eclipse.plugins.weblogic.editors.ClasspathFieldEditor;
 
-public class ClasspathPreferencePage extends FieldEditorPreferencePage implements WeblogicPluginResources, IWorkbenchPreferencePage {
+/**
+ * This class represents Classpath preference page
+ * 
+ * @author rajendarreddyj
+ *
+ */
+public class ClasspathPreferencePage extends FieldEditorPreferencePage
+		implements WeblogicPluginResources, IWorkbenchPreferencePage {
 
-    public ClasspathPreferencePage() {
-        super(GRID);
-        setPreferenceStore(WeblogicPlugin.getDefault().getPreferenceStore());
-        setDescription(WeblogicPluginResources.CLASSPATH_DESCRIPTION_LABEL);
-        initializeDefaults();
-    }
+	/**
+	 * 
+	 */
+	public ClasspathPreferencePage() {
+		super(GRID);
+		setPreferenceStore(WeblogicPlugin.getDefault().getPreferenceStore());
+		setDescription(CLASSPATH_DESCRIPTION_LABEL);
+		initializeDefaults();
+	}
 
-    private void initializeDefaults() {
-    }
+	/**
+	 * This method will Initialize Default values(if any)
+	 */
+	private void initializeDefaults() {
+	}
 
-    @Override
-    public void init(IWorkbench arg0) {
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
+	 */
+	@Override
+	public void init(final IWorkbench arg0) {
+	}
 
-    @Override
-    protected void createFieldEditors() {
-        addField(new ClasspathFieldEditor("preclasspath", WeblogicPluginResources.CLASSPATH_BEFORE_LABEL, getFieldEditorParent()));
-        addField(new ClasspathFieldEditor("postclasspath", WeblogicPluginResources.CLASSPATH_AFTER_LABEL, getFieldEditorParent()));
-    }
+	/**
+	 * Creates the Classpath Preferece page field editors.
+	 * 
+	 * @see org.eclipse.jface.preference.FieldEditorPreferencePage#createFieldEditors()
+	 */
+	@Override
+	protected void createFieldEditors() {
+		addField(new ClasspathFieldEditor(PREF_PRE_CLASSPATH, CLASSPATH_BEFORE_LABEL, getFieldEditorParent()));
+		addField(new ClasspathFieldEditor(PREF_POST_CLASSPATH, CLASSPATH_AFTER_LABEL, getFieldEditorParent()));
+	}
 
 }

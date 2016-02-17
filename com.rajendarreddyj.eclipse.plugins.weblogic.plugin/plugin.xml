@@ -57,11 +57,4 @@
             id="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.ClasspathPreferencePage"
 			category="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.WeblogicPreferencePage"/>
    </extension>
-   <extension
-         point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.PreferenceInitializer">
-      </initializer>
-   </extension>
-
 </plugin>
