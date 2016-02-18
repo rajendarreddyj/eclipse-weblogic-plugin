@@ -106,7 +106,7 @@ public class JVMOptionEditor extends ListFieldEditor {
 	 */
 	@Override
 	protected String getNewInputObject() {
-		return getInputObject("");
+		return getInputObject(STRING_EMPTY);
 	}
 
 	/**

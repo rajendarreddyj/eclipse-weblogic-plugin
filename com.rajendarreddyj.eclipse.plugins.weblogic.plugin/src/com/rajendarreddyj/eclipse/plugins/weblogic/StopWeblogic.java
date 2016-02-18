@@ -1,5 +1,9 @@
 package com.rajendarreddyj.eclipse.plugins.weblogic;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -30,8 +34,7 @@ public class StopWeblogic extends WeblogicLauncher implements WeblogicPluginReso
 	 */
 	@Override
 	protected String getMainClass() {
-		//TODO replace weblogic.Admin with better server stop code
-		return "weblogic.Admin";
+		return WEBLOGIC_WLST;
 	}
 
 	/*
@@ -55,14 +58,20 @@ public class StopWeblogic extends WeblogicLauncher implements WeblogicPluginReso
 	@Override
 	protected String[] getPrgArgs() {
 		final ArrayList<String> vmargs = new ArrayList<>();
-		vmargs.add("-url");
-		vmargs.add("t3://" + WeblogicPreferenceStore.getHostname() + ":" + WeblogicPreferenceStore.getPort());
-		vmargs.add("-username");
-		vmargs.add(WeblogicPreferenceStore.getUserName());
-		vmargs.add("-password");
-		vmargs.add(WeblogicPreferenceStore.getPassword());
-		vmargs.add("FORCESHUTDOWN");
-		vmargs.add(WeblogicPreferenceStore.getServerName());
+		final String filePath = WeblogicPreferenceStore.getDomainDir() + File.separator + "bin" + File.separator
+				+ "shutdown.py";
+		final File file = new File(filePath);
+		try {
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
+			bufferedWriter.write(getShutDownWLSTScript());
+			bufferedWriter.close();
+			vmargs.add(filePath);
+		} catch (final IOException e) {
+		} finally {
+		}
 		return vmargs.toArray(new String[0]);
 	}
 
@@ -75,6 +84,31 @@ public class StopWeblogic extends WeblogicLauncher implements WeblogicPluginReso
 	@Override
 	protected String getWorkdir() {
 		return WeblogicPreferenceStore.getDomainDir();
+	}
+
+	/**
+	 * This will get Shutdown WLST script for weblogic Server
+	 * 
+	 * @return
+	 */
+	private static String getShutDownWLSTScript() {
+		final StringBuffer sb = new StringBuffer(STRING_EMPTY);
+		sb.append("connect" + STRING_OPEN_PARANTHESIS);
+		sb.append("url=" + STRING_SINGLE_QUOTE + "t3://" + WeblogicPreferenceStore.getHostname() + STRING_COLON
+				+ WeblogicPreferenceStore.getPort() + STRING_SINGLE_QUOTE + STRING_COMMA);
+		sb.append("adminServerName=" + STRING_SINGLE_QUOTE + WeblogicPreferenceStore.getServerName()
+				+ STRING_SINGLE_QUOTE);
+		sb.append(STRING_CLOSE_PARANTHESIS);
+		sb.append(PATH_SEPARATOR);
+		sb.append("shutdown" + STRING_OPEN_PARANTHESIS);
+		sb.append(STRING_SINGLE_QUOTE + WeblogicPreferenceStore.getServerName() + STRING_SINGLE_QUOTE + STRING_COMMA);
+		sb.append(STRING_SINGLE_QUOTE + "Server" + STRING_SINGLE_QUOTE + STRING_COMMA);
+		sb.append("ignoreSessions= " + STRING_SINGLE_QUOTE + "true" + STRING_SINGLE_QUOTE);
+		sb.append(STRING_CLOSE_PARANTHESIS);
+		sb.append(PATH_SEPARATOR);
+		sb.append("exit()");
+		sb.append(PATH_SEPARATOR);
+		return sb.toString();
 	}
 
 }

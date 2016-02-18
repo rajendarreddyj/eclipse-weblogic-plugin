@@ -46,17 +46,14 @@ public class StartWeblogic extends WeblogicLauncher implements WeblogicPluginRes
 	protected String[] getClasspath() {
 		final String weblogicHome = WeblogicPreferenceStore.getWeblogicHome();
 		if (weblogicHome != null && weblogicHome.length() != 0) {
-			final List<String> projectClassPathList = WeblogicPreferenceStore.getProjectClassPathList();
-			final List<String> preClassPathList = WeblogicPreferenceStore.getPreClassPathList();
-			final List<String> postClassPathList = WeblogicPreferenceStore.getPostClassPathList();
-			final List<String> classpath = new ArrayList<>(preClassPathList);
+			final List<String> classpath = new ArrayList<>(WeblogicPreferenceStore.getPreClassPathList());
 			classpath.add(getVMInstall().getInstallLocation() + File.separator + "lib" + File.separator + "tools.jar");
 			classpath.add(weblogicHome + File.separator + "server" + File.separator + "lib" + File.separator
 					+ "weblogic.jar");
 			classpath.add(weblogicHome + File.separator + "server" + File.separator + "lib" + File.separator
 					+ "weblogic_sp.jar");
-			classpath.addAll(postClassPathList);
-			classpath.addAll(projectClassPathList);
+			classpath.addAll(WeblogicPreferenceStore.getPostClassPathList());
+			classpath.addAll(WeblogicPreferenceStore.getProjectClassPathList());
 			return classpath.toArray(new String[0]);
 		}
 		return null;

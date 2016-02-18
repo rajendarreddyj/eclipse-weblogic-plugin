@@ -1,7 +1,6 @@
 package com.rajendarreddyj.eclipse.plugins.weblogic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +15,7 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
+import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.Launch;
 import org.eclipse.debug.core.model.ISourceLocator;
 import org.eclipse.debug.core.sourcelookup.ISourceContainer;
@@ -28,6 +28,7 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.internal.launching.JavaSourceLookupDirector;
+import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 import org.eclipse.jdt.launching.IVMInstall;
 import org.eclipse.jdt.launching.IVMInstallType;
 import org.eclipse.jdt.launching.IVMRunner;
@@ -83,16 +84,16 @@ public abstract class WeblogicLauncher implements WeblogicPluginResources {
 			final ISourceLocator sourceLocator, final boolean debug, final boolean showInDebugger)
 			throws CoreException {
 		final IVMInstall vmInstall = getVMInstall();
-		String mode = "";
+		String mode = ILaunchManager.DEBUG_MODE;
 		if (debug && classToLaunch.equals(WEBLOGIC_MAIN_CLASS)) {
-			mode = "debug";
+			mode = ILaunchManager.DEBUG_MODE;
 		} else {
-			mode = "run";
+			mode = ILaunchManager.RUN_MODE;
 		}
 		final IVMRunner vmRunner = vmInstall.getVMRunner(mode);
 
 		final ILaunchConfigurationType launchType = DebugPlugin.getDefault().getLaunchManager()
-				.getLaunchConfigurationType("org.eclipse.jdt.launching.localJavaApplication");
+				.getLaunchConfigurationType(IJavaLaunchConfigurationConstants.ID_JAVA_APPLICATION);
 		final ILaunchConfigurationWorkingCopy config = launchType.newInstance(null, label);
 		config.setAttribute(IDebugUIConstants.ATTR_PRIVATE, true);
 		config.setAttribute(ILaunchConfiguration.ATTR_SOURCE_LOCATOR_ID,
@@ -102,8 +103,6 @@ public abstract class WeblogicLauncher implements WeblogicPluginResources {
 
 		config.doSave();
 		if (vmRunner != null) {
-			WeblogicPlugin.log("VM ARGS" + Arrays.toString(vmArgs));
-			WeblogicPlugin.log("classpath" + Arrays.toString(classpath));
 			final VMRunnerConfiguration vmConfig = new VMRunnerConfiguration(classToLaunch, classpath);
 			vmConfig.setVMArguments(vmArgs);
 			vmConfig.setProgramArguments(prgArgs);

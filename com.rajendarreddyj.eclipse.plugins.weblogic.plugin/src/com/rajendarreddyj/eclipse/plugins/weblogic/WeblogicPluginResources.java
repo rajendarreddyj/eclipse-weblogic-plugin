@@ -25,6 +25,12 @@ public abstract interface WeblogicPluginResources {
 	public static final String PREF_DEBUG_OPTIONS = "debugoptions";
 	public static final String PATH_SEPARATOR = ";";
 	public static final String WINDOWS_SEPARATOR = "\\";
+	public static final String STRING_EMPTY = "";
+	public static final String STRING_SINGLE_QUOTE = "'";
+	public static final String STRING_COLON = ":";
+	public static final String STRING_COMMA = ",";
+	public static final String STRING_OPEN_PARANTHESIS = "(";
+	public static final String STRING_CLOSE_PARANTHESIS = ")";
 	public static final String DEFAULT_JVM_OPTIONS = "-server;-Xms256m;-Xmx512m;-Dweblogic.ProductionModeEnabled=false;-Xverify:none;";
 	public static final String WEBLOGIC_START_MSG = WeblogicPlugin.getResourceString("action.weblogic.start.msg");
 	public static final String WEBLOGIC_STOP_MSG = WeblogicPlugin.getResourceString("action.weblogic.stop.msg");
@@ -32,6 +38,7 @@ public abstract interface WeblogicPluginResources {
 	public static final String STOP_FAILED_MSG = WeblogicPlugin.getResourceString("action.stop.failed.msg");
 	public static final String WEBLOGIC_LABEL = "WebLogic Server";
 	public static final String WEBLOGIC_MAIN_CLASS = "weblogic.Server";
+	public static final String WEBLOGIC_WLST = "weblogic.WLST";
 	public static final String BUTTON_ADD_LABEL = WeblogicPlugin.getResourceString("pref.button.add.label");
 	public static final String BUTTON_REMOVE_LABEL = WeblogicPlugin.getResourceString("pref.button.remove.label");
 	public static final String BUTTON_MODIFY_LABEL = WeblogicPlugin.getResourceString("pref.button.modify.label");

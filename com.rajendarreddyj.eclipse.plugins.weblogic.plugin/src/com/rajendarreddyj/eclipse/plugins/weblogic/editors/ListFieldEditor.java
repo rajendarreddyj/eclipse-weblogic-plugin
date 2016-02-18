@@ -374,7 +374,7 @@ public abstract class ListFieldEditor extends ListEditor implements WeblogicPlug
 	 */
 	@Override
 	protected String createList(final String[] items) {
-		final StringBuffer path = new StringBuffer("");
+		final StringBuffer path = new StringBuffer(STRING_EMPTY);
 		for (final String item : items) {
 			path.append(item);
 			path.append(PATH_SEPARATOR);
