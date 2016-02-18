@@ -177,38 +177,16 @@ public abstract class WeblogicLauncher implements WeblogicPluginResources {
 			}
 		}
 		final ISourceLookupDirector sourceLocator = new JavaSourceLookupDirector();
-
 		final ISourcePathComputer computer = DebugPlugin.getDefault().getLaunchManager()
 				.getSourcePathComputer("org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer");
 		sourceLocator.setSourcePathComputer(computer);
-
 		final List<ISourceContainer> sourceContainers = new ArrayList<>();
-
 		if (!tempList.isEmpty()) {
 			final IJavaProject[] javaProjects = tempList.toArray(new IJavaProject[1]);
-
-			// Eclipse stops looking for source if it finds a jar containing the
-			// source code
-			// despite this jar as no attached source (the user will have to use
-			// 'Attach source' button).
-			// So we have to enforce that sources in project are searched before
-			// jar files,
-			// To do so we add source containers in this orders :
-			// - First project source containers.
-			// - second packageFragmentRoot container (jar files in projects
-			// build path will be added to source path)
-			// - third DefaultSourceContainer (jar files added to classpath will
-			// be added to source path)
-
-			// First add all projects source containers
 			for (final IJavaProject project : javaProjects) {
 				sourceContainers.add(new JavaProjectSourceContainer(project));
 			}
-
-			// Adding packageFragmentRoot source containers, so classes in jar
-			// files associated to a project will be seen
 			final Set<IPath> external = new HashSet<>();
-
 			for (final IJavaProject project : javaProjects) {
 				final IPackageFragmentRoot[] iPackageFragmentRoots = project.getPackageFragmentRoots();
 				for (final IPackageFragmentRoot iPackageFragmentRoot : iPackageFragmentRoots) {
@@ -223,11 +201,7 @@ public abstract class WeblogicLauncher implements WeblogicPluginResources {
 				}
 			}
 		}
-
-		// Last add DefaultSourceContainer, classes in jar files added to
-		// classpath will be visible
 		sourceContainers.add(new DefaultSourceContainer());
-
 		sourceLocator.setSourceContainers(sourceContainers.toArray(new ISourceContainer[sourceContainers.size()]));
 		sourceLocator.initializeParticipants();
 		return sourceLocator;
