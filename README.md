@@ -11,7 +11,7 @@ It allows you to start and stop specified weblogic instance. It is also used to 
 - Right Click on _"site.xml"_ in com.rajendarreddyj.eclipse.plugins.weblogic.site project and Select _"Plug-in Tools"_ and click _"Build Site"_.
 
 ##How to install Eclipse Weblogic Plugin ?
-1. Build or download from releases & unzip _"eclipse-weblogic-plugin-site-x.y.z.zip"_,
+1. Build or download from releases & unzip _"Eclipse-Weblogic-Plugin-Site-vx.y.z.zip"_,
 2. Launch _Eclipse_,
 3. In Eclipse, Click on _"Help > Install New Software..."_,
 3. Click on button _"Add..."_ to add a new repository,
