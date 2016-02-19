@@ -47,7 +47,7 @@
             id="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.ClasspathPreferencePage"
             category="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.WeblogicPreferencePage"/>
       <page
-            name="JVM Options"
+            name="Java VM Options"
             class="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.JVMOptionsPreferencePage"
             id="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.ClasspathPreferencePage"
 			category="com.rajendarreddyj.eclipse.plugins.weblogic.preferences.WeblogicPreferencePage"/>

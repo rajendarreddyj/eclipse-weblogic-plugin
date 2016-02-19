@@ -2,19 +2,19 @@
 <feature
       id="com.rajendarreddyj.eclipse.plugins.weblogic.feature"
       label="Eclipse Weblogic Plugin"
-      version="1.0.0"
-      provider-name="RAJENDARREDDYJ"
+      version="1.0.1"
+      provider-name="rajendarreddyj - Eclipse Weblogic Plugin"
       plugin="com.rajendarreddyj.eclipse.plugins.weblogic.plugin">
 
-   <description url="https://raw.githubusercontent.com/rajendarreddyj/eclipse-weblogic-plugin/master/README.md">
+   <description url="https://rajendarreddyj.github.io/eclipse-weblogic-plugin/">
       Simple Weblogic Plugin to Start/Stop Weblogic Server.
    </description>
 
-   <copyright url="https://raw.githubusercontent.com/rajendarreddyj/eclipse-weblogic-plugin/master/LICENSE">
+   <copyright>
       Copyright (C) 2016  rajendarreddyj
    </copyright>
 
-   <license url="https://raw.githubusercontent.com/rajendarreddyj/eclipse-weblogic-plugin/master/LICENSE">
+   <license url="license.html">
       The MIT License (MIT)
 
 Copyright (c) 2016 Rajendarreddy Jagapathi
@@ -46,7 +46,7 @@ SOFTWARE.
          id="com.rajendarreddyj.eclipse.plugins.weblogic.plugin"
          download-size="0"
          install-size="0"
-         version="1.0.0"
+         version="1.0.1"
          unpack="false"/>
 
 </feature>
