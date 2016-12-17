@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description url="http://rajendarreddyj.github.io/eclipse-weblogic-plugin/update-site">
+   <description url="http://anandchakru.github.io/eclipse-weblogic-plugin/update-site">
       Eclipse Update Site for Eclipse Weblogic plugin
    </description>
    <feature url="features/com.rajendarreddyj.eclipse.plugins.weblogic.feature_1.0.1.jar" id="com.rajendarreddyj.eclipse.plugins.weblogic.feature" version="1.0.1">
@@ -8,7 +8,7 @@
    </feature>
    <category-def name="Eclipse Weblogic Plugin" label="Eclipse Weblogic Plugin">
       <description>
-         A Simple Weblogic Plugin to Start/Stop Weblogic Server.
+         A Simple Weblogic Plugin to Start/Stop Weblogic Server. With Remote Control.
       </description>
    </category-def>
 </site>
