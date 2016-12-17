@@ -20,9 +20,11 @@ public class StartRemoteControlHandler extends AbstractHandler implements Weblog
 		try {
 			String startUrl = WeblogicPreferenceStore.getRemoteStart();
 			String stopUrl = WeblogicPreferenceStore.getRemoteStop();
-			Integer port = Integer.parseInt(WeblogicPreferenceStore.getRemotePort());
+			String port = WeblogicPreferenceStore.getRemotePort();
 			WeblogicPlugin.log(WEBLOGIC_REMOTE_START_MSG + ":" + startUrl + ":" + stopUrl + ":" + port);
-			RemoteControl.init(startUrl, stopUrl, port);
+			if (startUrl != null && startUrl.length() > 0 && port != null && port.length() > 0 && stopUrl != null && stopUrl.length() > 0) {
+				RemoteControl.init(startUrl, stopUrl, Integer.parseInt(port));
+			}
 		} catch (final Exception ex) {
 			WeblogicPlugin.log(REMOTE_START_FAILED_MSG);
 			WeblogicPlugin.log(ex);

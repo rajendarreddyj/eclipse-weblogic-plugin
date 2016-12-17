@@ -40,17 +40,17 @@
                   id="com.rajendarreddyj.eclipse.plugins.weblogic.toolbars.stopWeblogicCommand">
             </command>
             <command
+                  commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.startRemoteControl"
+                  icon="icons/rcstart.gif"
+                  tooltip="Start RemoteControl"
+                  id="com.rajendarreddyj.eclipse.plugins.weblogic.toolbars.startRemoteControlCommand">
+            </command>
+            <!--<command
                   commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.stopRemoteControl"
                   icon="icons/rcstop.gif"
                   tooltip="Stop RemoteControl"
                   id="com.rajendarreddyj.eclipse.plugins.weblogic.toolbars.stopRemoteControlCommand">
-            </command>
-            <command
-                  commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.startRemoteControl"
-                  icon="icons/rcstop.gif"
-                  tooltip="Start RemoteControl"
-                  id="com.rajendarreddyj.eclipse.plugins.weblogic.toolbars.startRemoteControlCommand">
-            </command>
+            </command>-->
          </toolbar>
       </menuContribution>
    </extension>
