@@ -45,12 +45,6 @@
                   tooltip="Start RemoteControl"
                   id="com.rajendarreddyj.eclipse.plugins.weblogic.toolbars.startRemoteControlCommand">
             </command>
-            <!--<command
-                  commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.stopRemoteControl"
-                  icon="icons/rcstop.gif"
-                  tooltip="Stop RemoteControl"
-                  id="com.rajendarreddyj.eclipse.plugins.weblogic.toolbars.stopRemoteControlCommand">
-            </command>-->
          </toolbar>
       </menuContribution>
    </extension>
