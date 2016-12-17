@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -20,7 +19,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
  *
  */
 public final class WeblogicPreferenceStore implements WeblogicPluginResources {
-
 	/**
 	 * @return
 	 */
@@ -28,7 +26,6 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_ORACLEHOME);
 	}
-
 	/**
 	 * @return
 	 */
@@ -36,7 +33,6 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_WLHOME);
 	}
-
 	/**
 	 * @return
 	 */
@@ -44,7 +40,6 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_DOMAINNAME);
 	}
-
 	/**
 	 * @return
 	 */
@@ -52,7 +47,6 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_DOMAINDIR);
 	}
-
 	/**
 	 * @return
 	 */
@@ -60,7 +54,6 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_SERVERNAME);
 	}
-
 	/**
 	 * @return
 	 */
@@ -68,7 +61,6 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_USERNAME);
 	}
-
 	/**
 	 * @return
 	 */
@@ -76,7 +68,6 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_PASSWORD);
 	}
-
 	/**
 	 * @return
 	 */
@@ -84,7 +75,6 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_HOSTNAME);
 	}
-
 	/**
 	 * @return
 	 */
@@ -92,7 +82,6 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_PORT);
 	}
-
 	/**
 	 * @param str
 	 * @param delim
@@ -106,7 +95,6 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		}
 		return strings;
 	}
-
 	/**
 	 * @return
 	 */
@@ -114,16 +102,13 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_PROJECTS);
 	}
-
 	/**
 	 * @return
 	 */
 	public static List<String> getProjectClassPathList() {
 		final String projects = getProjects();
-
 		final List<String> projectList = toArrayList(projects, PATH_SEPARATOR);
 		final List<String> projectClassPathList = new ArrayList<>();
-
 		final Iterator<String> iterator = projectList.iterator();
 		while (iterator.hasNext()) {
 			final String projectName = iterator.next();
@@ -141,44 +126,48 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
 		}
 		return projectClassPathList;
 	}
-
 	public static String getPreClassPath() {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_PRE_CLASSPATH);
 	}
-
 	public static List<String> getPreClassPathList() {
 		final String preClassPath = getPreClassPath();
 		return toArrayList(preClassPath, PATH_SEPARATOR);
 	}
-
 	public static String getPostClassPath() {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_POST_CLASSPATH);
 	}
-
 	public static List<String> getPostClassPathList() {
 		final String postClassPath = getPostClassPath();
 		return toArrayList(postClassPath, PATH_SEPARATOR);
 	}
-
 	public static String getJVMOptions() {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_JVM_OPTIONS);
 	}
-
 	public static List<String> getJVMOptionList() {
 		final String jvmoptions = getJVMOptions();
 		return toArrayList(jvmoptions, PATH_SEPARATOR);
 	}
-
 	public static String getLibPath() {
 		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
 		return prefs.getString(PREF_LIBPATH);
 	}
-
 	public static List<String> getLibPathList() {
 		final String libPath = getLibPath();
 		return toArrayList(libPath, PATH_SEPARATOR);
+	}
+	public static String getRemoteStart() {
+		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
+		return prefs.getString(PREF_REMOTE_START);
+	}
+	public static String getRemoteStop() {
+		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
+		return prefs.getString(PREF_REMOTE_STOP);
+	}
+	public static String getRemotePort() {
+		final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
+		return prefs.getString(PREF_REMOTE_START_PORT);
 	}
 }
