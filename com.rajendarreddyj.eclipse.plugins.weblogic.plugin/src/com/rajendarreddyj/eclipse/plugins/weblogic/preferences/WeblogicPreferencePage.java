@@ -5,7 +5,6 @@ import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-
 import com.rajendarreddyj.eclipse.plugins.weblogic.WeblogicPlugin;
 import com.rajendarreddyj.eclipse.plugins.weblogic.WeblogicPluginResources;
 
@@ -22,25 +21,21 @@ import com.rajendarreddyj.eclipse.plugins.weblogic.WeblogicPluginResources;
  * @author rajendarreddyj
  *
  */
-public class WeblogicPreferencePage extends FieldEditorPreferencePage
-		implements IWorkbenchPreferencePage, WeblogicPluginResources {
-
+public class WeblogicPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage, WeblogicPluginResources {
 	/**
 	 * 
 	 */
 	public WeblogicPreferencePage() {
 		super(GRID);
-		setPreferenceStore(WeblogicPlugin.getDefault().getPreferenceStore());
-		setDescription(WEBLOGIC_DESCRIPTION_LABEL);
-		initializeDefaults();
+		this.setPreferenceStore(WeblogicPlugin.getDefault().getPreferenceStore());
+		this.setDescription(WEBLOGIC_DESCRIPTION_LABEL);
+		this.initializeDefaults();
 	}
-
 	/**
 	 * This method will Initialize Default values(if any)
 	 */
 	private void initializeDefaults() {
 	}
-
 	/**
 	 * Creates the Weblogic Preferece page field editors. Field editors are
 	 * abstractions of the common GUI blocks needed to manipulate various types
@@ -50,17 +45,19 @@ public class WeblogicPreferencePage extends FieldEditorPreferencePage
 	 */
 	@Override
 	public void createFieldEditors() {
-		addField(new DirectoryFieldEditor(PREF_ORACLEHOME, WEBLOGIC_ORACLEHOME_LABEL, getFieldEditorParent()));
-		addField(new DirectoryFieldEditor(PREF_WLHOME, WEBLOGIC_WLHOME_LABEL, getFieldEditorParent()));
-		addField(new StringFieldEditor(PREF_DOMAINNAME, WEBLOGIC_DOMAINNAME_LABEL, 20, getFieldEditorParent()));
-		addField(new DirectoryFieldEditor(PREF_DOMAINDIR, WEBLOGIC_DOMAINDIR_LABEL, getFieldEditorParent()));
-		addField(new StringFieldEditor(PREF_SERVERNAME, WEBLOGIC_SERVERNAME_LABEL, 20, getFieldEditorParent()));
-		addField(new StringFieldEditor(PREF_USERNAME, WEBLOGIC_USER_LABEL, 20, getFieldEditorParent()));
-		addField(new StringFieldEditor(PREF_PASSWORD, WEBLOGIC_PASSWORD_LABEL, 20, getFieldEditorParent()));
-		addField(new StringFieldEditor(PREF_HOSTNAME, WEBLOGIC_HOSTNAME_LABEL, 20, getFieldEditorParent()));
-		addField(new StringFieldEditor(PREF_PORT, WEBLOGIC_PORT_LABEL, 10, getFieldEditorParent()));
+		this.addField(new DirectoryFieldEditor(PREF_ORACLEHOME, WEBLOGIC_ORACLEHOME_LABEL, this.getFieldEditorParent()));
+		this.addField(new DirectoryFieldEditor(PREF_WLHOME, WEBLOGIC_WLHOME_LABEL, this.getFieldEditorParent()));
+		this.addField(new StringFieldEditor(PREF_DOMAINNAME, WEBLOGIC_DOMAINNAME_LABEL, 20, this.getFieldEditorParent()));
+		this.addField(new DirectoryFieldEditor(PREF_DOMAINDIR, WEBLOGIC_DOMAINDIR_LABEL, this.getFieldEditorParent()));
+		this.addField(new StringFieldEditor(PREF_SERVERNAME, WEBLOGIC_SERVERNAME_LABEL, 20, this.getFieldEditorParent()));
+		this.addField(new StringFieldEditor(PREF_USERNAME, WEBLOGIC_USER_LABEL, 20, this.getFieldEditorParent()));
+		this.addField(new StringFieldEditor(PREF_PASSWORD, WEBLOGIC_PASSWORD_LABEL, 20, this.getFieldEditorParent()));
+		this.addField(new StringFieldEditor(PREF_HOSTNAME, WEBLOGIC_HOSTNAME_LABEL, 20, this.getFieldEditorParent()));
+		this.addField(new StringFieldEditor(PREF_PORT, WEBLOGIC_PORT_LABEL, 10, this.getFieldEditorParent()));
+		this.addField(new StringFieldEditor(PREF_REMOTE_START, WEBLOGIC_REMOTE_START_LABEL, this.getFieldEditorParent()));
+		this.addField(new StringFieldEditor(PREF_REMOTE_START_PORT, WEBLOGIC_REMOTE_START_PORT_LABEL, 10, this.getFieldEditorParent()));
+		this.addField(new StringFieldEditor(PREF_REMOTE_STOP, WEBLOGIC_REMOTE_STOP_LABEL, this.getFieldEditorParent()));
 	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -70,5 +67,4 @@ public class WeblogicPreferencePage extends FieldEditorPreferencePage
 	@Override
 	public void init(final IWorkbench workbench) {
 	}
-
 }

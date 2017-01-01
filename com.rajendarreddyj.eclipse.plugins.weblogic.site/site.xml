@@ -8,7 +8,7 @@
    </feature>
    <category-def name="Eclipse Weblogic Plugin" label="Eclipse Weblogic Plugin">
       <description>
-         A Simple Weblogic Plugin to Start/Stop Weblogic Server.
+         A Simple Weblogic Plugin to Start/Stop Weblogic Server. With Remote Control.
       </description>
    </category-def>
 </site>
