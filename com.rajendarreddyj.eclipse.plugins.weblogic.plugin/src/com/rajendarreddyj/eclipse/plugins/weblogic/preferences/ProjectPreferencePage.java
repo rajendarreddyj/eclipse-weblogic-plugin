@@ -14,43 +14,42 @@ import com.rajendarreddyj.eclipse.plugins.weblogic.editors.ProjectFieldEditor;
  * @author rajendarreddyj
  *
  */
-public class ProjectPreferencePage extends FieldEditorPreferencePage
-		implements WeblogicPluginResources, IWorkbenchPreferencePage {
+public class ProjectPreferencePage extends FieldEditorPreferencePage implements WeblogicPluginResources, IWorkbenchPreferencePage {
 
-	/**
-	 * 
-	 */
-	public ProjectPreferencePage() {
-		super(GRID);
-		setPreferenceStore(WeblogicPlugin.getDefault().getPreferenceStore());
-		setDescription(PROJECT_DESCRIPTION_LABEL);
-		initializeDefaults();
-	}
+    /**
+     * 
+     */
+    public ProjectPreferencePage() {
+        super(GRID);
+        this.setPreferenceStore(WeblogicPlugin.getDefault().getPreferenceStore());
+        this.setDescription(PROJECT_DESCRIPTION_LABEL);
+        this.initializeDefaults();
+    }
 
-	/**
-	 * This method will Initialize Default values(if any)
-	 */
-	private void initializeDefaults() {
-	}
+    /**
+     * This method will Initialize Default values(if any)
+     */
+    private void initializeDefaults() {
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
-	 */
-	@Override
-	public void init(final IWorkbench arg0) {
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
+     */
+    @Override
+    public void init(final IWorkbench arg0) {
+    }
 
-	/**
-	 * Creates the Project Preferece page field editors.
-	 * 
-	 * @see org.eclipse.jface.preference.FieldEditorPreferencePage#createFieldEditors()
-	 */
-	@Override
-	protected void createFieldEditors() {
-		addField(new ProjectFieldEditor(PREF_PROJECTS, PROJECT_LIST_LABEL, getFieldEditorParent()));
-	}
+    /**
+     * Creates the Project Preferece page field editors.
+     * 
+     * @see org.eclipse.jface.preference.FieldEditorPreferencePage#createFieldEditors()
+     */
+    @Override
+    protected void createFieldEditors() {
+        this.addField(new ProjectFieldEditor(PREF_PROJECTS, PROJECT_LIST_LABEL, this.getFieldEditorParent()));
+    }
 
 }

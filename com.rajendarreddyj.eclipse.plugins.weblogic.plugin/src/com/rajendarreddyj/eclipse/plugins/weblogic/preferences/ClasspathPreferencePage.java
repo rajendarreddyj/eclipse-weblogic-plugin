@@ -14,44 +14,43 @@ import com.rajendarreddyj.eclipse.plugins.weblogic.editors.ClasspathFieldEditor;
  * @author rajendarreddyj
  *
  */
-public class ClasspathPreferencePage extends FieldEditorPreferencePage
-		implements WeblogicPluginResources, IWorkbenchPreferencePage {
+public class ClasspathPreferencePage extends FieldEditorPreferencePage implements WeblogicPluginResources, IWorkbenchPreferencePage {
 
-	/**
-	 * 
-	 */
-	public ClasspathPreferencePage() {
-		super(GRID);
-		setPreferenceStore(WeblogicPlugin.getDefault().getPreferenceStore());
-		setDescription(CLASSPATH_DESCRIPTION_LABEL);
-		initializeDefaults();
-	}
+    /**
+     * 
+     */
+    public ClasspathPreferencePage() {
+        super(GRID);
+        this.setPreferenceStore(WeblogicPlugin.getDefault().getPreferenceStore());
+        this.setDescription(CLASSPATH_DESCRIPTION_LABEL);
+        this.initializeDefaults();
+    }
 
-	/**
-	 * This method will Initialize Default values(if any)
-	 */
-	private void initializeDefaults() {
-	}
+    /**
+     * This method will Initialize Default values(if any)
+     */
+    private void initializeDefaults() {
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
-	 */
-	@Override
-	public void init(final IWorkbench arg0) {
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
+     */
+    @Override
+    public void init(final IWorkbench arg0) {
+    }
 
-	/**
-	 * Creates the Classpath Preferece page field editors.
-	 * 
-	 * @see org.eclipse.jface.preference.FieldEditorPreferencePage#createFieldEditors()
-	 */
-	@Override
-	protected void createFieldEditors() {
-		addField(new ClasspathFieldEditor(PREF_PRE_CLASSPATH, CLASSPATH_BEFORE_LABEL, getFieldEditorParent()));
-		addField(new ClasspathFieldEditor(PREF_POST_CLASSPATH, CLASSPATH_AFTER_LABEL, getFieldEditorParent()));
-	}
+    /**
+     * Creates the Classpath Preferece page field editors.
+     * 
+     * @see org.eclipse.jface.preference.FieldEditorPreferencePage#createFieldEditors()
+     */
+    @Override
+    protected void createFieldEditors() {
+        this.addField(new ClasspathFieldEditor(PREF_PRE_CLASSPATH, CLASSPATH_BEFORE_LABEL, this.getFieldEditorParent()));
+        this.addField(new ClasspathFieldEditor(PREF_POST_CLASSPATH, CLASSPATH_AFTER_LABEL, this.getFieldEditorParent()));
+    }
 
 }
