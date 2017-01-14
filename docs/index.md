@@ -5,6 +5,7 @@ Eclipse Weblogic Plugin is a plug-in for the Eclipse platform.
 It allows you to start and stop specified weblogic instance. It is also used to debug and hot swap code.
 
 ## How to build Eclipse Weblogic Plugin ?
+
 ### With Eclipse:
 - Launch _Eclipse_,
 - Import _"Existing Projects into Workspace"_ by selecting the parent project folder,
