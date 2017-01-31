@@ -178,19 +178,4 @@ public final class WeblogicPreferenceStore implements WeblogicPluginResources {
         final String libPath = getLibPath();
         return toArrayList(libPath, PATH_SEPARATOR);
     }
-
-    public static String getRemoteStart() {
-        final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
-        return prefs.getString(PREF_REMOTE_START);
-    }
-
-    public static String getRemoteStop() {
-        final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
-        return prefs.getString(PREF_REMOTE_STOP);
-    }
-
-    public static String getRemotePort() {
-        final IPreferenceStore prefs = WeblogicPlugin.getDefault().getPreferenceStore();
-        return prefs.getString(PREF_REMOTE_START_PORT);
-    }
 }

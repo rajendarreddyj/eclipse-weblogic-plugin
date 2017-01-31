@@ -23,9 +23,6 @@ public abstract interface WeblogicPluginResources {
     public static final String PREF_JVM_OPTIONS = "jvmoptions";
     public static final String PREF_LIBPATH = "libpath";
     public static final String PREF_DEBUG_OPTIONS = "debugoptions";
-    public static final String PREF_REMOTE_START = "remotestarturl";
-    public static final String PREF_REMOTE_STOP = "remotestopurl";
-    public static final String PREF_REMOTE_START_PORT = "remoteport";
     public static final String PATH_SEPARATOR = ";";
     public static final String WINDOWS_SEPARATOR = "\\";
     public static final String STRING_EMPTY = "";
@@ -71,9 +68,6 @@ public abstract interface WeblogicPluginResources {
     public static final String WEBLOGIC_PASSWORD_LABEL = WeblogicPlugin.getResourceString("pref.weblogic.password.label");
     public static final String WEBLOGIC_HOSTNAME_LABEL = WeblogicPlugin.getResourceString("pref.weblogic.hostname.label");
     public static final String WEBLOGIC_PORT_LABEL = WeblogicPlugin.getResourceString("pref.weblogic.port.label");
-    public static final String WEBLOGIC_REMOTE_START_LABEL = WeblogicPlugin.getResourceString("pref.weblogic.remotestart.label");
-    public static final String WEBLOGIC_REMOTE_STOP_LABEL = WeblogicPlugin.getResourceString("pref.weblogic.remotestop.label");
-    public static final String WEBLOGIC_REMOTE_START_PORT_LABEL = WeblogicPlugin.getResourceString("pref.weblogic.remotestart.port.label");
     public static final String CLASSPATH_DESCRIPTION_LABEL = WeblogicPlugin.getResourceString("pref.classpath.description.label");
     public static final String CLASSPATH_BEFORE_LABEL = WeblogicPlugin.getResourceString("pref.classpath.before.label");
     public static final String CLASSPATH_AFTER_LABEL = WeblogicPlugin.getResourceString("pref.classpath.after.label");

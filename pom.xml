@@ -11,14 +11,14 @@
     <module>com.rajendarreddyj.eclipse.plugins.weblogic.site</module>
   </modules>
   <properties>
-    <tycho.version>0.26.0</tycho.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- Skip the deployment here, submodules can override this property -->
-    <maven.deploy.skip>true</maven.deploy.skip>
-    <eclipse.latest.url>http://download.eclipse.org/releases/neon</eclipse.latest.url>
     <!-- Java Compiler -->
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <tycho.version>0.26.0</tycho.version>
+    <eclipse.latest.url>http://download.eclipse.org/releases/neon</eclipse.latest.url>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Skip the deployment here, submodules can override this property -->
+    <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
   <repositories>
     <repository>
@@ -28,17 +28,35 @@
     </repository>
   </repositories>
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-maven-plugin</artifactId>
+          <version>${tycho.version}</version>
+          <extensions>true</extensions>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>target-platform-configuration</artifactId>
+          <version>${tycho.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-versions-plugin</artifactId>
+          <version>${tycho.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-maven-plugin</artifactId>
-        <version>${tycho.version}</version>
         <extensions>true</extensions>
       </plugin>
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>target-platform-configuration</artifactId>
-        <version>${tycho.version}</version>
         <configuration>
           <environments>
             <environment>
@@ -68,6 +86,10 @@
             </environment>
           </environments>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-versions-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

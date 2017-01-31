@@ -7,8 +7,8 @@ It allows you to start and stop specified weblogic instance. It is also used to 
 ##How to build Eclipse Weblogic Plugin ?
 ###With Eclipse:
 - Launch _Eclipse_,
-- Import _"Existing Projects into Workspace"_ by selecting the parent project folder,
-- Right Click on _"site.xml"_ in com.rajendarreddyj.eclipse.plugins.weblogic.site project and Select _"Plug-in Tools"_ and click _"Build Site"_.
+- Import _"Existing Maven Projects"_ by selecting the parent project folder,
+- Right Click on eclipse-weblogic-plugin project and Run _"mvn clean install".
 
 ##How to install Eclipse Weblogic Plugin ?
 1. Build or download from releases & unzip _"Eclipse-Weblogic-Plugin-Site-vx.y.z.zip"_,

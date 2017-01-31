@@ -54,9 +54,6 @@ public class WeblogicPreferencePage extends FieldEditorPreferencePage implements
         this.addField(new StringFieldEditor(PREF_PASSWORD, WEBLOGIC_PASSWORD_LABEL, 20, this.getFieldEditorParent()));
         this.addField(new StringFieldEditor(PREF_HOSTNAME, WEBLOGIC_HOSTNAME_LABEL, 20, this.getFieldEditorParent()));
         this.addField(new StringFieldEditor(PREF_PORT, WEBLOGIC_PORT_LABEL, 10, this.getFieldEditorParent()));
-        this.addField(new StringFieldEditor(PREF_REMOTE_START, WEBLOGIC_REMOTE_START_LABEL, this.getFieldEditorParent()));
-        this.addField(new StringFieldEditor(PREF_REMOTE_START_PORT, WEBLOGIC_REMOTE_START_PORT_LABEL, 10, this.getFieldEditorParent()));
-        this.addField(new StringFieldEditor(PREF_REMOTE_STOP, WEBLOGIC_REMOTE_STOP_LABEL, this.getFieldEditorParent()));
     }
 
     /*
