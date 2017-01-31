@@ -8,7 +8,10 @@ It allows you to start and stop specified weblogic instance. It is also used to 
 ###With Eclipse:
 - Launch _Eclipse_,
 - Import _"Existing Maven Projects"_ by selecting the parent project folder,
-- Right Click on eclipse-weblogic-plugin project and Run _"mvn clean install".
+- Right Click on eclipse-weblogic-plugin project and Run _"mvn clean install"_.
+
+##How to Change Version of  Eclipse Weblogic Plugin ?
+- Go to eclipse-weblogic-plugin directory and Run _"mvn tycho-versions:set-version -DnewVersion=1.0.1"_.
 
 ##How to install Eclipse Weblogic Plugin ?
 1. Build or download from releases & unzip _"Eclipse-Weblogic-Plugin-Site-vx.y.z.zip"_,
