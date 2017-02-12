@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-
    <extension
          point="org.eclipse.ui.handlers">
       <handler
@@ -11,14 +10,6 @@
       <handler
             commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.stopWeblogicCommand"
             class="com.rajendarreddyj.eclipse.plugins.weblogic.handlers.StopActionHandler">
-      </handler>
-      <handler
-            commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.stopRemoteControl"
-            class="com.rajendarreddyj.eclipse.plugins.weblogic.handlers.StopRemoteControlHandler">
-      </handler>
-      <handler
-            commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.startRemoteControl"
-            class="com.rajendarreddyj.eclipse.plugins.weblogic.handlers.StartRemoteControlHandler">
       </handler>
    </extension>
    <extension
@@ -38,12 +29,6 @@
                   icon="icons/stop.gif"
                   tooltip="Stop Weblogic Server"
                   id="com.rajendarreddyj.eclipse.plugins.weblogic.toolbars.stopWeblogicCommand">
-            </command>
-            <command
-                  commandId="com.rajendarreddyj.eclipse.plugins.weblogic.commands.startRemoteControl"
-                  icon="icons/rcstart.gif"
-                  tooltip="Start RemoteControl"
-                  id="com.rajendarreddyj.eclipse.plugins.weblogic.toolbars.startRemoteControlCommand">
             </command>
          </toolbar>
       </menuContribution>
