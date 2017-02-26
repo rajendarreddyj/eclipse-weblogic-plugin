@@ -1,4 +1,8 @@
-## Eclipse Weblogic Plugin [![Build Status](https://travis-ci.org/rajendarreddyj/eclipse-weblogic-plugin.svg?branch=master)](https://travis-ci.org/rajendarreddyj/eclipse-weblogic-plugin)
+# Eclipse Weblogic Plugin 
+
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://raw.githubusercontent.com/rajendarreddyj/eclipse-weblogic-plugin/master/LICENSE)
+[![Build Status](https://travis-ci.org/rajendarreddyj/eclipse-weblogic-plugin.svg?branch=master)](https://travis-ci.org/rajendarreddyj/eclipse-weblogic-plugin)
+
 Eclipse Weblogic Plugin is a plug-in for the Eclipse platform.
 
 ##Description
