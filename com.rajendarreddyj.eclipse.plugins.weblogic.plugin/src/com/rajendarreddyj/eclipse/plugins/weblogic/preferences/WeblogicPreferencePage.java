@@ -35,8 +35,20 @@ public class WeblogicPreferencePage extends FieldEditorPreferencePage implements
      * This method will Initialize Default values(if any)
      */
     private void initializeDefaults() {
+        // Initialize values if needed
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
+     */
+    @Override
+    public void init(final IWorkbench workbench) {
+        // Nothing to implement at this moment
+    }
+    
     /**
      * Creates the Weblogic Preferece page field editors. Field editors are abstractions of the common GUI blocks needed
      * to manipulate various types of preferences. Each field editor knows how to save and restore itself.
@@ -54,15 +66,5 @@ public class WeblogicPreferencePage extends FieldEditorPreferencePage implements
         this.addField(new StringFieldEditor(PREF_PASSWORD, WEBLOGIC_PASSWORD_LABEL, 20, this.getFieldEditorParent()));
         this.addField(new StringFieldEditor(PREF_HOSTNAME, WEBLOGIC_HOSTNAME_LABEL, 20, this.getFieldEditorParent()));
         this.addField(new StringFieldEditor(PREF_PORT, WEBLOGIC_PORT_LABEL, 10, this.getFieldEditorParent()));
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
-     */
-    @Override
-    public void init(final IWorkbench workbench) {
     }
 }

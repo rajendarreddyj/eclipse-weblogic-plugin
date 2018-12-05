@@ -54,7 +54,7 @@ public class StartWeblogic extends WeblogicLauncher implements WeblogicPluginRes
             classpath.addAll(WeblogicPreferenceStore.getProjectClassPathList());
             return classpath.toArray(new String[0]);
         }
-        return null;
+        return new String[0];
     }
 
     /*
@@ -73,14 +73,14 @@ public class StartWeblogic extends WeblogicLauncher implements WeblogicPluginRes
         vmargs.add("-Dweblogic.management.password=" + WeblogicPreferenceStore.getPassword());
 
         final List<String> libpathlist = WeblogicPreferenceStore.getLibPathList();
-        if (libpathlist.size() > 0) {
+        if (libpathlist.isEmpty()) {
             final String[] libpatharray = libpathlist.toArray(new String[0]);
-            final StringBuffer buff = new StringBuffer(libpatharray[0]);
+            final StringBuilder sb = new StringBuilder(libpatharray[0]);
             for (int i = 1; i < libpatharray.length; i++) {
-                buff.append(File.pathSeparator);
-                buff.append(libpatharray[i]);
+            	sb.append(File.pathSeparator);
+            	sb.append(libpatharray[i]);
             }
-            vmargs.add("-Djava.library.path=" + buff.toString());
+            vmargs.add("-Djava.library.path=" + sb.toString());
         }
         return vmargs.toArray(new String[0]);
     }

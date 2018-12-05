@@ -54,6 +54,7 @@ public class JVMOptionsPreferencePage extends FieldEditorPreferencePage implemen
      */
     @Override
     public void init(final IWorkbench arg0) {
+        // Nothing to implement at this moment
     }
 
     /**

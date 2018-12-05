@@ -6,7 +6,6 @@ import java.util.StringTokenizer;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.preference.ListEditor;
 import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -227,15 +226,12 @@ public abstract class ListFieldEditor extends ListEditor implements WeblogicPlug
             layout.verticalSpacing = 0;
             this.buttonBox.setLayout(layout);
             this.createButtons(this.buttonBox);
-            this.buttonBox.addDisposeListener(new DisposeListener() {
-                @Override
-                public void widgetDisposed(final DisposeEvent event) {
-                    ListFieldEditor.this.addButton = null;
-                    ListFieldEditor.this.removeButton = null;
-                    ListFieldEditor.this.upButton = null;
-                    ListFieldEditor.this.downButton = null;
-                    ListFieldEditor.this.buttonBox = null;
-                }
+            this.buttonBox.addDisposeListener((DisposeEvent event) -> {
+                ListFieldEditor.this.addButton = null;
+                ListFieldEditor.this.removeButton = null;
+                ListFieldEditor.this.upButton = null;
+                ListFieldEditor.this.downButton = null;
+                ListFieldEditor.this.buttonBox = null;
             });
         } else {
             this.checkParent(this.buttonBox, parent);
@@ -257,12 +253,7 @@ public abstract class ListFieldEditor extends ListEditor implements WeblogicPlug
             this.list = new List(parent, 2820);
 
             this.list.addSelectionListener(this.getSelectionListener());
-            this.list.addDisposeListener(new DisposeListener() {
-                @Override
-                public void widgetDisposed(final DisposeEvent event) {
-                    ListFieldEditor.this.list = null;
-                }
-            });
+            this.list.addDisposeListener((DisposeEvent event) -> ListFieldEditor.this.list = null);
         } else {
             this.checkParent(this.list, parent);
         }
@@ -373,7 +364,7 @@ public abstract class ListFieldEditor extends ListEditor implements WeblogicPlug
      */
     @Override
     protected String createList(final String[] items) {
-        final StringBuffer path = new StringBuffer(STRING_EMPTY);
+        final StringBuilder path = new StringBuilder(STRING_EMPTY);
         for (final String item : items) {
             path.append(item);
             path.append(PATH_SEPARATOR);

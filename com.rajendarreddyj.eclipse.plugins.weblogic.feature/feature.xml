@@ -2,7 +2,7 @@
 <feature
       id="com.rajendarreddyj.eclipse.plugins.weblogic.feature"
       label="Eclipse Weblogic Plugin"
-      version="1.0.1"
+      version="1.1.0"
       provider-name="rajendarreddyj - Eclipse Weblogic Plugin"
       plugin="com.rajendarreddyj.eclipse.plugins.weblogic.plugin">
 
@@ -46,7 +46,7 @@ SOFTWARE.
          id="com.rajendarreddyj.eclipse.plugins.weblogic.plugin"
          download-size="0"
          install-size="0"
-         version="1.0.1"
+         version="1.1.0"
          unpack="false"/>
 
 </feature>

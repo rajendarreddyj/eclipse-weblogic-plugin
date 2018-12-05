@@ -20,6 +20,8 @@ import org.eclipse.jface.preference.IPreferenceStore;
  *
  */
 public final class WeblogicPreferenceStore implements WeblogicPluginResources {
+    
+    private WeblogicPreferenceStore() {}
     /**
      * @return
      */

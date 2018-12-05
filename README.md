@@ -46,3 +46,9 @@ It allows you to start and stop specified weblogic instance. It is also used to 
 1. Click on _"Help > About Eclipse > Installation Details"_,
 2. Select _"Eclipse Weblogic Plugin"_,
 3. Click on _"Uninstall..."_.
+
+## Development Notes
+
+This mojo will set New version for parent pom.
+
+`mvn versions:set -DnewVersion=1.1.0`

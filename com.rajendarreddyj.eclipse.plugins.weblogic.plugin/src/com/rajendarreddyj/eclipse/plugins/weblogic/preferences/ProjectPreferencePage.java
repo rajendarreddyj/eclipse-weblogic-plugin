@@ -30,6 +30,7 @@ public class ProjectPreferencePage extends FieldEditorPreferencePage implements 
      * This method will Initialize Default values(if any)
      */
     private void initializeDefaults() {
+        // Initialize values if needed
     }
 
     /*
@@ -40,6 +41,7 @@ public class ProjectPreferencePage extends FieldEditorPreferencePage implements 
      */
     @Override
     public void init(final IWorkbench arg0) {
+        // Nothing to implement at this moment
     }
 
     /**

@@ -10,7 +10,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -33,36 +32,11 @@ public class WeblogicPlugin extends AbstractUIPlugin implements WeblogicPluginRe
      * The constructor
      */
     public WeblogicPlugin() {
-        plugin = this;
         try {
             this.resourceBundle = ResourceBundle.getBundle(PLUGIN_ID + ".resources");
         } catch (final MissingResourceException x) {
             this.resourceBundle = null;
         }
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.
-     * BundleContext)
-     */
-    @Override
-    public void start(final BundleContext context) throws Exception {
-        super.start(context);
-        plugin = this;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.
-     * BundleContext)
-     */
-    @Override
-    public void stop(final BundleContext context) throws Exception {
-        plugin = null;
-        super.stop(context);
     }
 
     /**
@@ -96,6 +70,7 @@ public class WeblogicPlugin extends AbstractUIPlugin implements WeblogicPluginRe
         try {
             return bundle != null ? bundle.getString(key) : key;
         } catch (final MissingResourceException e) {
+            WeblogicPlugin.log(e);
         }
         return key;
     }

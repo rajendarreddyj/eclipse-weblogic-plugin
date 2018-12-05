@@ -60,16 +60,19 @@ public class StopWeblogic extends WeblogicLauncher implements WeblogicPluginReso
         final ArrayList<String> vmargs = new ArrayList<>();
         final String filePath = WeblogicPreferenceStore.getDomainDir() + File.separator + "bin" + File.separator + "shutdown.py";
         final File file = new File(filePath);
+        boolean fileCreated = false;
         try {
             if (!file.exists()) {
-                file.createNewFile();
+                fileCreated = file.createNewFile();
             }
-            final BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
-            bufferedWriter.write(getShutDownWLSTScript());
-            bufferedWriter.close();
+            if (fileCreated) {
+                try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false))) {
+                    bufferedWriter.write(getShutDownWLSTScript());
+                }
+            }
             vmargs.add(filePath);
         } catch (final IOException e) {
-        } finally {
+            WeblogicPlugin.log(e);
         }
         return vmargs.toArray(new String[0]);
     }
@@ -91,7 +94,7 @@ public class StopWeblogic extends WeblogicLauncher implements WeblogicPluginReso
      * @return
      */
     private static String getShutDownWLSTScript() {
-        final StringBuffer sb = new StringBuffer(STRING_EMPTY);
+        final StringBuilder sb = new StringBuilder(STRING_EMPTY);
         sb.append("connect" + STRING_OPEN_PARANTHESIS);
         sb.append("url=" + STRING_SINGLE_QUOTE + "t3://" + WeblogicPreferenceStore.getHostname() + STRING_COLON + WeblogicPreferenceStore.getPort()
                 + STRING_SINGLE_QUOTE + STRING_COMMA);

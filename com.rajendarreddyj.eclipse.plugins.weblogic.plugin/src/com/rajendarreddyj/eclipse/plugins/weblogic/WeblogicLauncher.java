@@ -11,6 +11,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
@@ -83,7 +84,7 @@ public abstract class WeblogicLauncher implements WeblogicPluginResources {
             final String[] prgArgs, final String workDir, final ISourceLocator sourceLocator, final boolean debug, final boolean showInDebugger)
             throws CoreException {
         final IVMInstall vmInstall = this.getVMInstall();
-        String mode = ILaunchManager.DEBUG_MODE;
+        String mode = "";
         if (debug && classToLaunch.equals(WEBLOGIC_MAIN_CLASS)) {
             mode = ILaunchManager.DEBUG_MODE;
         } else {
@@ -112,7 +113,7 @@ public abstract class WeblogicLauncher implements WeblogicPluginResources {
             } else {
                 vmConfig.setBootClassPath(bootClasspath);
             }
-            vmRunner.run(vmConfig, launch, null);
+            vmRunner.run(vmConfig, launch, new NullProgressMonitor());
         }
         if (showInDebugger) {
             DebugPlugin.getDefault().getLaunchManager().addLaunch(launch);
