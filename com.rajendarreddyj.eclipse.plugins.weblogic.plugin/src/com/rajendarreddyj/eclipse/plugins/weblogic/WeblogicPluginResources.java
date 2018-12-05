@@ -34,10 +34,6 @@ public abstract interface WeblogicPluginResources {
     public static final String DEFAULT_JVM_OPTIONS = "-server;-Xms256m;-Xmx512m;-Dweblogic.ProductionModeEnabled=false;-Xverify:none;";
     public static final String WEBLOGIC_START_MSG = WeblogicPlugin.getResourceString("action.weblogic.start.msg");
     public static final String WEBLOGIC_STOP_MSG = WeblogicPlugin.getResourceString("action.weblogic.stop.msg");
-    public static final String WEBLOGIC_REMOTE_START_MSG = WeblogicPlugin.getResourceString("action.weblogic.remote.start.msg");
-    public static final String WEBLOGIC_REMOTE_STOP_MSG = WeblogicPlugin.getResourceString("action.weblogic.remote.stop.msg");
-    public static final String REMOTE_START_FAILED_MSG = WeblogicPlugin.getResourceString("action.weblogic.remote.start.failed.msg");
-    public static final String REMOTE_STOP_FAILED_MSG = WeblogicPlugin.getResourceString("action.weblogic.remote.stop.failed.msg");
     public static final String START_FAILED_MSG = WeblogicPlugin.getResourceString("action.start.failed.msg");
     public static final String STOP_FAILED_MSG = WeblogicPlugin.getResourceString("action.stop.failed.msg");
     public static final String WEBLOGIC_LABEL = "WebLogic Server";
@@ -74,7 +70,7 @@ public abstract interface WeblogicPluginResources {
     public static final String PROJECT_DESCRIPTION_LABEL = WeblogicPlugin.getResourceString("pref.project.description.label");
     public static final String PROJECT_LIST_LABEL = WeblogicPlugin.getResourceString("pref.project.list.label");
     public static final String PROJECT_SELECTION_LABEL = WeblogicPlugin.getResourceString("pref.project.selection.label");
-    public static final String DEBUG_DESCRIPTION_LABEL = WeblogicPlugin.getResourceString("pref.debug.description.label");
+    /*public static final String DEBUG_DESCRIPTION_LABEL = WeblogicPlugin.getResourceString("pref.debug.description.label");
     public static final String DEBUG_LIST_LABEL = WeblogicPlugin.getResourceString("pref.debug.list.label");
-    public static final String DEBUG_SELECTION_LABEL = WeblogicPlugin.getResourceString("pref.debug.selection.label");
+    public static final String DEBUG_SELECTION_LABEL = WeblogicPlugin.getResourceString("pref.debug.selection.label");*/
 }
