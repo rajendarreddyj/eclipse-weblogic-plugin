@@ -73,7 +73,7 @@ public class StartWeblogic extends WeblogicLauncher implements WeblogicPluginRes
         vmargs.add("-Dweblogic.management.password=" + WeblogicPreferenceStore.getPassword());
 
         final List<String> libpathlist = WeblogicPreferenceStore.getLibPathList();
-        if (libpathlist.isEmpty()) {
+        if (!libpathlist.isEmpty()) {
             final String[] libpatharray = libpathlist.toArray(new String[0]);
             final StringBuilder sb = new StringBuilder(libpatharray[0]);
             for (int i = 1; i < libpatharray.length; i++) {
