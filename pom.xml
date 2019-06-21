@@ -14,7 +14,7 @@
     <!-- Java Compiler -->
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <tycho.version>1.2.0</tycho.version>
+    <tycho.version>0.26.0</tycho.version>
     <maven.versions.plugin.version>2.5</maven.versions.plugin.version>
     <eclipse.latest.url>http://download.eclipse.org/releases/latest</eclipse.latest.url>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
