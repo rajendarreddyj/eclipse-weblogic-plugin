@@ -23,13 +23,13 @@ It allows you to start and stop specified weblogic instance. It is also used to 
 6. You'll need to accept the license and confirm you want to install a plugin that is not digitally signed. Go ahead and install it anyway.
 7. Restart eclipse.
 
-## How to install Eclipse Weblogic Plugin from [update site](https://rajendarreddyj.github.io/eclipse-weblogic-plugin/update-site/)?
+## How to install Eclipse Weblogic Plugin from [update site](https://rajendarreddyj-personal.github.io/eclipse-weblogic-plugin/update-site/)?
 1. Launch _Eclipse_,
 2. In Eclipse, Click on _"Help > Install New Software..."_,
 3. Click on button _"Add..."_ to add a new repository,
 4. Enter Name and URL as below and click OK.
     * Name    : Eclipse Weblogic Plugin Update Site
-    * Location: https://rajendarreddyj.github.io/eclipse-weblogic-plugin/update-site/
+    * Location: https://rajendarreddyj-personal.github.io/eclipse-weblogic-plugin/update-site/
 5. You should see _"Eclipse Weblogic Plugin"_. Select the checkbox next to it and click Next,
 6. You'll need to accept the license and confirm you want to install a plugin that is not digitally signed. Go ahead and install it anyway.
 7. Restart eclipse.
